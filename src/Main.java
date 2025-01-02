@@ -1,49 +1,37 @@
-import entities.product;
-
+import java.util.Locale;
 import java.util.Scanner;
+import Product.Product;
 
 public class Main {
     public static void main(String[] args) {
+        Locale.setDefault(Locale.US);
         Scanner sc = new Scanner(System.in);
-        product mouse,chair;
-        mouse = new product();
+
+        System.out.println("Enter product data: ");
+        System.out.print("Name: ");
+        String name= sc.nextLine();
+        System.out.print("Price: ");
+        double price= sc.nextDouble();
+        System.out.print("Quantity in stock: ");
+        int quantity= sc.nextInt();
+        System.out.println();
 
 
-        System.out.print("Product Name : ");
-        mouse.name = sc.nextLine();
-        System.out.print("Product price : ");
-        mouse.price = Integer.parseInt(sc.nextLine());
-        System.out.print("Product quantity in stock : ");
-        mouse.quantity = Integer.parseInt(sc.nextLine());
+        Product product = new Product(name,price,quantity);
+        System.out.println("Product data: "+ product);
 
-        System.out.println("Product in stock :"+ mouse.name +"  -  R$:"+ mouse.price +"  -  #"+ mouse.quantity);
-        System.out.println("total value in stock : R$:" + mouse.totalValueInStock());
-        System.out.print("Number of product to be stocked : " );
-       int newQuantity = mouse.quantity;
-            newQuantity += Integer.parseInt(sc.nextLine());
-//        mouse.addedStock(newQuantity);
-
-
-        System.out.println("Product in stock :"+ mouse.name +"  -   R$:"+ mouse.price +"  -   #" + mouse.addedStock(newQuantity));
-        System.out.println("total value in stock : R$:" + newQuantity * mouse.price);
-        System.out.print("Number of product to be << REMOVED >> to stock : " );
-        newQuantity -= Integer.parseInt(sc.nextLine());
-        System.out.println("Product in stock :"+ mouse.name +"  -   R$:"+ mouse.price +"  -  #" +mouse.removeFromStock(newQuantity));
-        System.out.println("total value in stock : R$:" + newQuantity * mouse.price);
-
-
-
-
-
-
-
-
-
-
-
-
-
+        System.out.println();
+        System.out.print("Enter the number of products to be added in stock: ");
+        quantity = sc.nextInt();
+        product.addProducts(quantity);
+        System.out.println();
+        System.out.println("Updated data: "+ product);
+        System.out.println();
+        System.out.print("Enter the number of products to be removed from stock: ");
+        quantity= sc.nextInt();
+        product.removeProducts(quantity);
+        System.out.println();
+        System.out.println("Updated data: "+ product);
         sc.close();
-
     }
 }
